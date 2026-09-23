@@ -1,0 +1,14 @@
+# Object files
+*.o
+
+# Executables
+*.exe
+*.out
+convert
+serialize
+identify
+
+# IDE & OS files
+.vscode/
+.idea/
+.DS_Store
