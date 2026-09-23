@@ -191,8 +191,8 @@ void ScalarConverter::convert(const std::string& literal)
 		return;
 	}
 
-	// Allow trailing 'f' for float literals
-	if (*endPtr != '\0' && !(*endPtr == 'f' && *(endPtr + 1) == '\0'))
+	// Allow trailing 'f' or 'F' for float literals
+	if (*endPtr != '\0' && !((*endPtr == 'f' || *endPtr == 'F') && *(endPtr + 1) == '\0'))
 	{
 		std::cout << "char: impossible\nint: impossible\nfloat: impossible\ndouble: impossible" << std::endl;
 		return;
