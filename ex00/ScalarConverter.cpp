@@ -28,7 +28,9 @@ ScalarConverter::~ScalarConverter()
 void ScalarConverter::_printChar(double val, bool isSpecial)
 {
 	std::cout << "char: ";
-	if (isSpecial || val < 0 || val > 127)
+	if (isSpecial || val != val || val < 0 || val > 127
+		|| val == std::numeric_limits<double>::infinity()
+		|| val == -std::numeric_limits<double>::infinity())
 	{
 		std::cout << "impossible" << std::endl;
 	}
@@ -45,7 +47,8 @@ void ScalarConverter::_printChar(double val, bool isSpecial)
 void ScalarConverter::_printInt(double val, bool isSpecial)
 {
 	std::cout << "int: ";
-	if (isSpecial || val < static_cast<double>(std::numeric_limits<int>::min())
+	if (isSpecial || val != val
+		|| val < static_cast<double>(std::numeric_limits<int>::min())
 		|| val > static_cast<double>(std::numeric_limits<int>::max()))
 	{
 		std::cout << "impossible" << std::endl;
@@ -59,7 +62,7 @@ void ScalarConverter::_printInt(double val, bool isSpecial)
 void ScalarConverter::_printFloat(double val, bool isSpecial)
 {
 	std::cout << "float: ";
-	if (isSpecial)
+	if (isSpecial || val != val || val == std::numeric_limits<double>::infinity() || val == -std::numeric_limits<double>::infinity())
 	{
 		if (val != val)
 			std::cout << "nanf" << std::endl;
@@ -91,7 +94,7 @@ void ScalarConverter::_printFloat(double val, bool isSpecial)
 void ScalarConverter::_printDouble(double val, bool isSpecial)
 {
 	std::cout << "double: ";
-	if (isSpecial)
+	if (isSpecial || val != val || val == std::numeric_limits<double>::infinity() || val == -std::numeric_limits<double>::infinity())
 	{
 		if (val != val)
 			std::cout << "nan" << std::endl;
